@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from blog.models import Post, Category, Tag
+from blog.models import Post, Category, Tag, Comment
 
 class PostAdmin(admin.ModelAdmin):
     list_display=(
@@ -16,3 +16,4 @@ class PostAdmin(admin.ModelAdmin):
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category)
 admin.site.register(Tag)
+admin.site.register(Comment)
