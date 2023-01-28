@@ -1,5 +1,9 @@
 from django.db import models
 
+class Category(models.Model):
+    name = models.CharField("カテゴリー", max_length=255)
+    slug = models.SlugField(unique=True)
+
 class Post(models.Model):
     title = models.CharField("タイトル", max_length=200)
     content = models.TextField("本文")
