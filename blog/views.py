@@ -121,6 +121,7 @@ class CommentCreateView(CreateView):
 class ReplyCreateView(CreateView):
     model = Reply
     form_class = ReplyForm
+    template_name = "blog/comment_form.html"
 
     def form_valid(self, form): #フォームで送られてきた内容を変更する
         reply = form.save(commit=False) #フォームから送られてきた内容を保存する前にform_validメソッド内で使えるようになる
