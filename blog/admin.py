@@ -11,6 +11,7 @@ class PostAdmin(admin.ModelAdmin):
         "is_published",
     )
     search_fields = ["title", "content"]
+    list_filter = ('category',)
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category)
