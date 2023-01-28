@@ -147,3 +147,11 @@ class CommentDeleteView(DeleteView):
     def get_success_url(self):
         #self.objectは削除しようとしているコメントを指している
         return reverse('post-detail', kwargs={'pk': self.object.post.pk})
+
+
+class ReplyDeleteView(DeleteView):
+    model = Reply
+    template_name = "blog/comment_delete.html"
+
+    def get_success_url(self):
+        return reverse('post-detail', kwargs={'pk': self.object.comment.post.pk})
