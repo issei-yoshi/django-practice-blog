@@ -5,6 +5,9 @@
   {% if category %}
     <h1>{{ category }}<i>-category-</i></h1>
     <hr>
+  {% elif  tag %}
+    <h1>{{ tag }}</h1>
+    <hr>
   {% endif %}
 
   {% for post in posts %}
