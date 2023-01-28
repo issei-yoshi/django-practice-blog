@@ -1,6 +1,6 @@
 from django.db.models import Q
 from django.http import Http404
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DeleteView, CreateView
 
 from blog.models import Post, Category, Tag, Comment, Reply
@@ -96,4 +96,23 @@ class SearchPostListView(ListView):
         context = super().get_context_data(**kwargs)
         context["query"] = self.query
         context["post_count"] = self.post_count
+        return context
+
+
+class CommentCreateView(CreateView):
+    model = Comment
+    form_class = CommentForm
+
+    def form_valid(self, form): #フォームで送られてきた内容を変更する
+        comment = form.save(commit=False) #フォームから送られてきた内容を保存する前にform_validメソッド内で使えるようになる
+        post_pk = self.kwargs['post_pk'] #記事のpkを取得して代入しておく
+        post = get_object_or_404(Post, pk=post_pk) #Postが存在するかどうかを判定
+        comment.post = post
+        comment.save()
+        return redirect('post-detail', pk=post_pk)
+
+    def get_context_data(self, **kwargs): #コメントを投稿するページにて記事の内容も出しておく #記事の情報もテンプレートに渡す
+        context = super().get_context_data(**kwargs)
+        post_pk = self.kwargs['post_pk'] #コメントのkwargsからpost_pkを取得
+        context['post'] = get_object_or_404(Post, pk=post_pk)
         return context
