@@ -28,6 +28,9 @@
           <p><a href="{% url 'post-detail' post.pk %}">続きを読む>></a></p>
         {% endif %}
       {% endfor %}
+
+      {% include "blog/snippets/pagination" %}
+
   </div>
 
   <div class="col-3">
