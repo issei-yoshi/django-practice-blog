@@ -7,6 +7,6 @@ class PostListView(ListView):
     model = Post
     template_name = "blog/post_list.html"
 
-class PostDetailsView(DeleteView):
+class PostDetailView(DeleteView):
     model = Post
     template_name = "blog/post_detail.html"
