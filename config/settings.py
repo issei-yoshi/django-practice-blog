@@ -119,8 +119,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-MEDIA_ROOT = BASE_DIR / 'medea/'
-MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'medea/' #mediaを保存する場所
+MEDIA_URL = '/media/' #mediaを配信するURL
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

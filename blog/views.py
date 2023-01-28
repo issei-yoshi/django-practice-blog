@@ -9,7 +9,7 @@ class PostListView(ListView):
     model = Post
     template_name = "blog/post_list.html"
     context_object_name = "posts"
-    paginate_by = 1
+    # paginate_by = 1
 
     def get_queryset(self):
         posts = super().get_queryset() #querysetには全ての記事が格納されている
