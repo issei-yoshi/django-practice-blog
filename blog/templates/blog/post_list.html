@@ -44,9 +44,11 @@
     </div>
     <div class="p-4">
       <h4>タグ</h4>
-      <span class="badge bg-light text-dark m-1">Light</span>
-      <span class="badge bg-light text-dark m-1">Light</span>
-      <span class="badge bg-light text-dark m-1">Light</span>
+      {% for tag in tags %}
+          <a class="btn bg-light text-dark m-1" href="{% url 'tag-post-list' tag.slug %}">
+            {{ tag.name }}
+          </a>
+      {% endfor %}
     </div>
   </div>
 </div>
