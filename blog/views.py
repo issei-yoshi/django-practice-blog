@@ -8,6 +8,11 @@ class PostListView(ListView):
     model = Post
     template_name = "blog/post_list.html"
 
+    def get_queryset(self):
+        posts = super().get_queryset() #querysetには全ての記事が格納されている
+        return posts.order_by('-updated_at')
+
+
 class PostDetailView(DeleteView):
     model = Post
     template_name = "blog/post_detail.html"
