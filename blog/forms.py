@@ -8,3 +8,12 @@ class CommentForm(forms.ModelForm):
         'name': forms.TextInput(attrs={'placeholder': '名前'}),
         'text': forms.Textarea(attrs={'placeholder': 'コメントを入力してください。'})
     }
+
+
+class ReplyForm(forms.ModelForm):
+    model = Reply
+    fields = ("name", "text")
+    widgets = {
+        'name': forms.TextInput(attrs={'placeholder': '名前'}),
+        'text': forms.Textarea(attrs={'placeholder': '返信を入力してください。'})
+    }
