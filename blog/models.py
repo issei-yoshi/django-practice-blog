@@ -11,7 +11,7 @@ class Post(models.Model):
     updated_at = models.DateTimeField("更新日", auto_now=True)
     is_published = models.BooleanField("公開設定", default=False)
 
-    category = models.ForeignKey(Category, on_delete=models.PROTECT)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, null=True, blank=True)
 
     def __str__(self):
         return self.title
