@@ -7,6 +7,7 @@ from blog.models import Post, Category, Tag
 class PostListView(ListView):
     model = Post
     template_name = "blog/post_list.html"
+    context_object_name = "posts"
 
     def get_queryset(self):
         posts = super().get_queryset() #querysetには全ての記事が格納されている
