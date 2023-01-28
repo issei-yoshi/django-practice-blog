@@ -12,6 +12,7 @@
       <!--コメント一覧-->
       {% include 'blog/snippets/comments.html'%}
       <!--コメントフォーム-->
+      <a href="{% url 'comment' post.pk %}">コメントする</a>
     </div>
     <div class="col-3">
       {% include "blog/snippets/sidebar.html" %}
