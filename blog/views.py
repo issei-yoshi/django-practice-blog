@@ -69,6 +69,7 @@ class SearchPostListView(ListView):
     model = Post
     template_name = "blog/post_list.html"
     context_object_name = "posts"
+    paginate_by = 1
 
     def get_queryset(self):
         self.query = self.request.GET.get('query') or "" #フォームで送信されたキーワードを取得する, queryはフォームで設定する
