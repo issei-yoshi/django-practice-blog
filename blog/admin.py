@@ -1,8 +1,9 @@
 from django.contrib import admin
+from markdownx.admin import MarkdownxModelAdmin
 
 from blog.models import Post, Category, Tag, Comment, Reply
 
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(MarkdownxModelAdmin ,admin.ModelAdmin):
     list_display=(
         "title",
         "category",
