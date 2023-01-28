@@ -2,7 +2,7 @@ from django.db import models
 
 class Category(models.Model):
     name = models.CharField("カテゴリー", max_length=255)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField("URL", unique=True)
 
 class Post(models.Model):
     title = models.CharField("タイトル", max_length=200)
@@ -11,7 +11,7 @@ class Post(models.Model):
     updated_at = models.DateTimeField("更新日", auto_now=True)
     is_published = models.BooleanField("公開設定", default=False)
 
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, null=True, blank=True)
+    category = models.ForeignKey("カテゴリー", Category, on_delete=models.PROTECT, null=True, blank=True)
 
     def __str__(self):
         return self.title
