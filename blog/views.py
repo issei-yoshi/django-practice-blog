@@ -68,14 +68,13 @@ class SearchPostListView(ListView):
     context_object_name = "posts"
 
     def get_queryset(self):
-        self.query = self.request.Get.get('query') or "" #フォームで送信されたキーワードを取得する, queryはフォームで設定する
+        self.query = self.request.GET.get('query') or "" #フォームで送信されたキーワードを取得する, queryはフォームで設定する
         queryset = super().get_queryset()
 
         if self.query:
             queryset = queryset.filter(
-                Q(title__icontains=self.query)#titleがqueryを含んでいる場合
-                 | #または
-                Q(content__icontains=self.query) #contentがqueryを含んでいる場合
+                #titleがqueryを含んでいるまたはcontentがqueryを含んでいる場合
+                Q(title__icontains=self.query) | Q(content__icontains=self.query)
             )
         return queryset
 
