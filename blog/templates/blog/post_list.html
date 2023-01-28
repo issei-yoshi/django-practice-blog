@@ -3,5 +3,6 @@
     <h2>{{ post.title }}</h2>
     <p>{{ post.content | truncatechars:30 }}</p>
     <p>{{ post.created_at }} | {{ post.updated_at }}</p>
+    <p><a href="{% url 'post-detail' post.pk %}">続きを読む>></a></p>
   {% endif %}
 {% endfor %}
