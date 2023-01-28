@@ -39,6 +39,9 @@ class Post(models.Model):
 
     tag = models.ManyToManyField(Tag, verbose_name="タグ", blank=True)
 
+    def convert_markdown_to_html(self):
+        return markdownify(self.content)
+
     def __str__(self):
         return self.title
 
