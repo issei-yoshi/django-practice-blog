@@ -3,6 +3,7 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from django.urls import reverse_lazy, reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from blog.models import Post, Category, Tag, Comment, Reply
 from blog.forms import CommentForm, ReplyForm
