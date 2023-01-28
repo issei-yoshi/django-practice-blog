@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView, DeleteView, CreateView
+from django.views.generic import ListView, DetailView, CreateView
 
 from blog.models import Post, Category, Tag, Comment, Reply
 from blog.forms import CommentForm, ReplyForm
@@ -17,7 +17,7 @@ class PostListView(ListView):
         return posts.order_by('-updated_at')
 
 
-class PostDetailView(DeleteView):
+class PostDetailView(DetailView):
     model = Post
     template_name = "blog/post_detail.html"
 
