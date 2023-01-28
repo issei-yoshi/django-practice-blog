@@ -79,6 +79,10 @@ class SearchPostListView(ListView):
                 #titleがqueryを含んでいるまたはcontentがqueryを含んでいる場合
                 Q(title__icontains=self.query) | Q(content__icontains=self.query)
             )
+
+        if not self.request.user.is_authenticated:
+            queryset = queryset.filter(is_published=True)
+
         return queryset
 
     def get_context_data(self, **kwargs):
