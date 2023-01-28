@@ -28,6 +28,7 @@ class PostDetailView(DeleteView):
 class CategoryPostListView(ListView):
     model = Post
     template_name = "blog/post_list.html"
+    context_object_name = "posts" #デフォルトではpost_listとなっているものをpostsに変更している
 
     def get_queryset(self):
         #TOPページでアクセスのあったカテゴリーのURLをslugに代入
@@ -36,3 +37,8 @@ class CategoryPostListView(ListView):
         self.category = get_object_or_404(Category, slug=slug)
         #filterを使って取得した記事からカテゴリーごとに絞り込み
         return super().get_queryset().filter(category=self.category)
+
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs) #object_listなど色々格納されている
+        context['category'] = self.category
+        return context
