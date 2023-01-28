@@ -1,4 +1,5 @@
 from django.db import models
+from markdownx.models import MarkdownxField
 
 class Category(models.Model):
     name = models.CharField(verbose_name="カテゴリー", max_length=255)
@@ -26,7 +27,8 @@ class Tag(models.Model):
 
 class Post(models.Model):
     title = models.CharField(verbose_name="タイトル", max_length=200)
-    content = models.TextField(verbose_name="本文")
+    # content = models.TextField(verbose_name="本文")
+    content = MarkdownxField(verbose_name="本文")
     image = models.ImageField(verbose_name="画像", upload_to='uploads/', null=True, blank=True)
     created_at = models.DateTimeField(verbose_name="作成日", auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name="更新日", auto_now=True)
