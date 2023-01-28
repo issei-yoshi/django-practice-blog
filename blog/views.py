@@ -116,3 +116,22 @@ class CommentCreateView(CreateView):
         post_pk = self.kwargs['post_pk'] #コメントのkwargsからpost_pkを取得
         context['post'] = get_object_or_404(Post, pk=post_pk)
         return context
+
+
+class ReplyCreateView(CreateView):
+    model = Reply
+    form_class = ReplyForm
+
+    def form_valid(self, form): #フォームで送られてきた内容を変更する
+        reply = form.save(commit=False) #フォームから送られてきた内容を保存する前にform_validメソッド内で使えるようになる
+        comment_pk = self.kwargs['comment_pk'] #コメントのpkを取得して代入しておく
+        comment = get_object_or_404(Comment, pk=comment_pk) #Commentが存在するかどうかを判定
+        reply.comment = comment
+        reply.save()
+        return redirect('post-detail', pk=comment.post.pk)
+
+    def get_context_data(self, **kwargs): #コメントを投稿するページにて記事の内容も出しておく #記事の情報もテンプレートに渡す
+        context = super().get_context_data(**kwargs)
+        comment_pk = self.kwargs['comment_pk'] #コメントのkwargsからcomment_pkを取得
+        context['comment'] = get_object_or_404(Comment, pk=comment_pk)
+        return context
