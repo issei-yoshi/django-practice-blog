@@ -4,9 +4,15 @@ class Category(models.Model):
     name = models.CharField(verbose_name="カテゴリー", max_length=255)
     slug = models.SlugField(verbose_name="URL", unique=True)
 
+    def __str__(self):
+        return self.name
+
 class Tag(models.Model):
     name = models.CharField(verbose_name="カテゴリー", max_length=255)
     slug = models.SlugField(verbose_name="URL", unique=True)
+
+    def __str__(self):
+        return self.name
 
 class Post(models.Model):
     title = models.CharField(verbose_name="タイトル", max_length=200)
