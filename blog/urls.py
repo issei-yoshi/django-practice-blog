@@ -6,6 +6,8 @@ from blog.views import (
     CategoryPostListView,
     TagPostListView,
     SearchPostListView,
+    CommentCreateView,
+    ReplyCreateView,
 )
 
 urlpatterns = [
