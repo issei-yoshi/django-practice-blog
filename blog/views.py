@@ -3,7 +3,7 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DeleteView, CreateView
 
-from blog.models import Post, Category, Tag
+from blog.models import Post, Category, Tag, Comment, Reply
 from blog.forms import CommentForm, ReplyForm
 
 class PostListView(ListView):
