@@ -69,6 +69,9 @@ class SearchPostListView(ListView):
 
     def get_queryset(self):
         self.query = self.request.GET.get('query') or "" #フォームで送信されたキーワードを取得する, queryはフォームで設定する
+        #requestはHttpリクエストが送られたときにDjangoが作るオブジェクト
+        #request.GETを実行するとrequestの情報を辞書型のデータで取得できる
+        #getメソッドを実行すると辞書型のオブジェクトからキーを指定して値を取得できる
         queryset = super().get_queryset()
 
         if self.query:
