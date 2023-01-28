@@ -17,5 +17,7 @@ class Post(models.Model):
 
     category = models.ForeignKey(Category, verbose_name="カテゴリー", on_delete=models.PROTECT, null=True, blank=True)
 
+    tag = models.ManyToManyField(Tag, verbose_name="タグ", blank=True)
+
     def __str__(self):
         return self.title
