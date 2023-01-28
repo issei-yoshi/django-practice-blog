@@ -1,7 +1,8 @@
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
+from django.urls import reverse_lazy
 
 from blog.models import Post, Category, Tag, Comment, Reply
 from blog.forms import CommentForm, ReplyForm
@@ -136,3 +137,9 @@ class ReplyCreateView(CreateView):
         comment_pk = self.kwargs['comment_pk'] #コメントのkwargsからcomment_pkを取得
         context['comment'] = get_object_or_404(Comment, pk=comment_pk)
         return context
+
+
+class CommentDeleteView(DeleteView):
+    model = Comment
+    template_name = "blog/comment_delete.html"
+    success_url = reverse_lazy("post-detail")
