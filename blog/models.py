@@ -1,5 +1,6 @@
 from django.db import models
 from markdownx.models import MarkdownxField
+from markdownx.utils import markdownify
 
 class Category(models.Model):
     name = models.CharField(verbose_name="カテゴリー", max_length=255)
