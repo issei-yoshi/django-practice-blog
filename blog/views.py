@@ -9,6 +9,7 @@ class PostListView(ListView):
     model = Post
     template_name = "blog/post_list.html"
     context_object_name = "posts"
+    paginate_by = 1
 
     def get_queryset(self):
         posts = super().get_queryset() #querysetには全ての記事が格納されている
@@ -31,6 +32,7 @@ class CategoryPostListView(ListView):
     model = Post
     template_name = "blog/post_list.html"
     context_object_name = "posts" #デフォルトではpost_listとなっているものをpostsに変更している
+    paginate_by = 1
 
     def get_queryset(self):
         #TOPページでアクセスのあったカテゴリーのURLをslugに代入
@@ -50,6 +52,7 @@ class TagPostListView(ListView):
     model = Post
     template_name = "blog/post_list.html"
     context_object_name = "posts"
+    paginate_by = 1
 
     def get_queryset(self):
         slug = self.kwargs["slug"]
