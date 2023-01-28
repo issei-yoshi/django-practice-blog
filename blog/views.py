@@ -87,9 +87,12 @@ class SearchPostListView(ListView):
         if not self.request.user.is_authenticated:
             queryset = queryset.filter(is_published=True)
 
+        self.post_count = len(queryset)
+
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["query"] = self.query
+        context["post_count"] = self.post_count
         return context
